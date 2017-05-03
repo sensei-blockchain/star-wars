@@ -1,6 +1,6 @@
 class BaseError extends Error {
   constructor(message, status) {
-  	super();
+    super();
     this.status = status;
     this.message = message;
   }

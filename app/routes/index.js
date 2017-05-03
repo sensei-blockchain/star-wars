@@ -1,4 +1,3 @@
-import Router from 'express';
 import initCharacterRoutes from './characterRoutes';
 import initResidentRoutes from './residentRoutes';
 

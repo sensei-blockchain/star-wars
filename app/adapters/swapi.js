@@ -1,9 +1,10 @@
 import Request from '../../lib/request';
+
 const async = Promise.promisifyAll(require('async'));
 
 export default class SWAPI {
   constructor() {
-    const baseuri = `http://swapi.co/api`;
+    const baseuri = 'http://swapi.co/api';
     this.client = new Request(baseuri);
     this.swapiDefaultPageSize = 10;
   }
@@ -19,8 +20,8 @@ export default class SWAPI {
   }
 
   getCharacterByName(search) {
-    const api = `people/`;
-    const query = { search }
+    const api = 'people/';
+    const query = { search };
     return this.client.get(api, query);
   }
 
@@ -35,9 +36,9 @@ export default class SWAPI {
   }
 
   _fetchAll(api, size) {
-    const pages = Math.ceil(size/this.swapiDefaultPageSize);
+    const pages = Math.ceil(size / this.swapiDefaultPageSize);
     return async.timesSeriesAsync(pages, (page, done) => {
-      this.client.get(api, { page: page+1 })
+      this.client.get(api, { page: page + 1 })
        .then(people => done(null, people.results))
        .catch(done);
     });
